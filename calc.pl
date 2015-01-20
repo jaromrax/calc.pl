@@ -4849,7 +4849,7 @@ sub WRITEF{
 #before!    my $name= $ff[0].".calcpl";
 
 #    for (my $ii=1;$ii<=$#ff; $ii++){ @fieldvar{$ff[$ii]}=qw(); }
-    print "opening file=<$name>,  # fields to WRITEF=$#ff (@ff[1..$#ff])\n";
+    print "..opening f=<$name>,  # fields to WRITEF=$#ff (@ff[1..$#ff])\n";
 
     my @ff=split/[\s\,]+/,$OUD;
 
@@ -5009,13 +5009,17 @@ close OUT;
 # THEN I concat the two files...
 #
 #    my $wrfile="/tmp/calc.writef.xmgrace"; #POZOR .calcpl
-    my $wrfile="$cwd/calc.writef.xmgrace"; #POZOR .calcpl
+#####   this makes rpoblem when uppercases
+#    my $wrfile="$cwd/calc.writef.xmgrace"; #POZOR .calcpl
+
+    my $wrfile="./calc.writef.xmgrace"; #POZOR .calcpl
     # x,y,dy,  y2,dy2,  y3,dy3      :     3 nebo 5 nebo 7 ...
     # po trojicich x,y,dy
     #&
     #              x,y2,dy2
     WRITEF( "$wrfile,@origparam" );
 ##    print `ls -ltrh`;
+#    print "AFTER WRITEF\n";
     `cat $wrfile.calcpl >> $grfile`;
 
 ############### run xmgrace 1st ##############################
